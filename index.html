@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>word combine</title>
+    <style>
+        body{line-height: 1;text-align: center;letter-spacing: -3px;}
+        br{line-height: .1;}
+    </style>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+</head>
+<body>
+    <script>
+        const INITIALS = ['ㄱ', 'ㄴ', 'ㄷ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅅ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
+        const VOWELS = ['ㅏ', 'ㅑ', 'ㅓ', 'ㅕ', 'ㅗ', 'ㅛ', 'ㅜ', 'ㅠ', 'ㅡ', 'ㅣ'];
+        const FINALS = ['', 'ㄱ',  'ㄴ',  'ㄷ', 'ㄹ', 'ㅁ', 'ㅂ',  'ㅅ',  'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
+
+        let cho1=Math.floor(Math.random()*INITIALS.length)
+        let joong1=Math.floor(Math.random()*VOWELS.length)
+        let jong01=Math.floor(Math.random()*FINALS.length)
+
+        function combineHangul(initials, vowels, finals) {
+  // 'ㅗ', 'ㅛ', 'ㅜ', 'ㅠ', 'ㅡ'는 밑으로 내려야 할 경우 처리
+  const lowerVowels = ['ㅗ', 'ㅛ', 'ㅜ', 'ㅠ', 'ㅡ'];
+  let vowelPosition = vowels;
+  let finalPosition = finals;
+
+  // 만약 중성이 밑으로 내려야 하는 경우, <br> 태그 추가
+  if (lowerVowels.includes(vowels)) {
+    vowelPosition ="<br>" + vowels ; // 밑으로 내리기 위해 <br> 추가
+  }
+
+  // 종성은 무조건 밑으로 내리기 위해 <br> 추가
+  if (finals !== '') {
+    finalPosition ="<br>" + finals  ; // 종성도 <br>로 내려주기
+  }
+
+  // 초성, 중성, 종성을 결합하여 음절 생성
+  return initials + vowelPosition + finalPosition;
+}
+console.log('초성:', INITIALS[cho1]);
+console.log('중성:', VOWELS[joong1]);
+console.log('종성:', FINALS[jong01]);
+
+try {
+  const syllable = combineHangul(INITIALS[cho1], VOWELS[joong1], FINALS[jong01]); // "간"
+  $('body').html(syllable)
+
+  
+} catch (error) {
+  console.error(error.message);
+}
+
+    </script>
+</body>
+</html>
