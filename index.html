@@ -12,13 +12,17 @@
 </head>
 <body>
     <script>
-        const INITIALS = ['ㄱ', 'ㄴ', 'ㄷ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅅ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
-        const VOWELS = ['ㅏ', 'ㅑ', 'ㅓ', 'ㅕ', 'ㅗ', 'ㅛ', 'ㅜ', 'ㅠ', 'ㅡ', 'ㅣ'];
-        const FINALS = ['', 'ㄱ',  'ㄴ',  'ㄷ', 'ㄹ', 'ㅁ', 'ㅂ',  'ㅅ',  'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
+        const INITIALS = ['ㄱ', 'ㄴ', 'ㄷ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅅ', 'ㅇ', 'ㅈ', 'ㅊ',  'ㅌ', 'ㅍ', 'ㅎ'];
+        const VOWELS = ['ㅏ',  'ㅓ',  'ㅗ',  'ㅜ',  'ㅡ', 'ㅣ'];
+        const FINALS = ['', 'ㄱ',  'ㄴ',  'ㄹ', 'ㅁ', 'ㅂ',    'ㅇ', ];
 
         let cho1=Math.floor(Math.random()*INITIALS.length)
         let joong1=Math.floor(Math.random()*VOWELS.length)
         let jong01=Math.floor(Math.random()*FINALS.length)
+        let cho2 = Math.floor(Math.random() * INITIALS.length); // 두 번째 초성
+        let joong2 = Math.floor(Math.random() * VOWELS.length); // 두 번째 중성
+        let jong02 = Math.floor(Math.random() * FINALS.length); // 두 번째 종성
+
 
         function combineHangul(initials, vowels, finals) {
   // 'ㅗ', 'ㅛ', 'ㅜ', 'ㅠ', 'ㅡ'는 밑으로 내려야 할 경우 처리
@@ -44,8 +48,10 @@ console.log('중성:', VOWELS[joong1]);
 console.log('종성:', FINALS[jong01]);
 
 try {
-  const syllable = combineHangul(INITIALS[cho1], VOWELS[joong1], FINALS[jong01]); // "간"
-  $('body').html(syllable)
+  const syllable1 = combineHangul(INITIALS[cho1], VOWELS[joong1], FINALS[jong01]);
+  const syllable2 = combineHangul(INITIALS[cho2], VOWELS[joong2], FINALS[jong02]);
+
+  $('body').html(`${syllable1}<br><br>${syllable2}`)
 
   
 } catch (error) {
