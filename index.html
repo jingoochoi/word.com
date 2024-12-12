@@ -27,13 +27,19 @@
         function combineHangul(initials, vowels, finals) {
   // 'ㅗ', 'ㅛ', 'ㅜ', 'ㅠ', 'ㅡ'는 밑으로 내려야 할 경우 처리
   const lowerVowels = ['ㅗ', 'ㅛ', 'ㅜ', 'ㅠ', 'ㅡ'];
-  let vowelPosition = vowels;
+  
   let finalPosition = finals;
 
   // 만약 중성이 밑으로 내려야 하는 경우, <br> 태그 추가
-  if (lowerVowels.includes(vowels)) {
-    vowelPosition ="<br>" + vowels ; // 밑으로 내리기 위해 <br> 추가
+  function processVowel(vowel) {
+    if (lowerVowels.includes(vowel)) {
+      const moum=['ㅏ', 'ㅓ', 'ㅣ', 'ㅖ', 'ㅕ']
+      return moum[Math.floor(Math.random()*moum.length)]; // 재귀 호출
+    }
+    return vowel;
   }
+
+  let vowelPosition = processVowel(vowels);
 
   // 종성은 무조건 밑으로 내리기 위해 <br> 추가
   if (finals !== '') {
