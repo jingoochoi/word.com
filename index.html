@@ -33,7 +33,7 @@
   // 만약 중성이 밑으로 내려야 하는 경우, <br> 태그 추가
   function processVowel(vowel) {
     if (lowerVowels.includes(vowel)) {
-      const moum=['ㅏ', 'ㅓ', 'ㅣ', 'ㅖ', 'ㅕ']
+      const moum=['ㅏ', 'ㅓ', 'ㅣ',  'ㅕ']
       return moum[Math.floor(Math.random()*moum.length)]; // 재귀 호출
     }
     return vowel;
