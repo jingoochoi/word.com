@@ -5,65 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>word combine</title>
     <style>
-        body{line-height: 1;text-align: center;letter-spacing: -3px;}
-        br{line-height: .1;}
+        body{text-align: center;}
     </style>
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 </head>
 <body>
     <script>
-        const INITIALS = [ 'ㄷ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅅ', 'ㅇ', 'ㅈ',   'ㅎ'];
-        const VOWELS = ['ㅏ',  'ㅓ',  'ㅗ',  'ㅜ',  'ㅡ', 'ㅣ'];
-        const FINALS = ['',   'ㄴ',      'ㅇ', ];
+       const girl = ["서", "아", "이", "하", "윤", "지", "안", "린", "은", "연", "민", "현", "수", "빈"]
 
-        let cho1=Math.floor(Math.random()*INITIALS.length)
-        let joong1=Math.floor(Math.random()*VOWELS.length)
-        let jong01=Math.floor(Math.random()*FINALS.length)
-        let cho2 = Math.floor(Math.random() * INITIALS.length); // 두 번째 초성
-        let joong2 = Math.floor(Math.random() * VOWELS.length); // 두 번째 중성
-        let jong02 = Math.floor(Math.random() * FINALS.length); // 두 번째 종성
-
-
-        function combineHangul(initials, vowels, finals) {
-  // 'ㅗ', 'ㅛ', 'ㅜ', 'ㅠ', 'ㅡ'는 밑으로 내려야 할 경우 처리
-  const lowerVowels = ['ㅗ', 'ㅛ', 'ㅜ', 'ㅠ', 'ㅡ'];
-  
-  let finalPosition = finals;
-
-  // 만약 중성이 밑으로 내려야 하는 경우, <br> 태그 추가
-  function processVowel(vowel) {
-    if (lowerVowels.includes(vowel)) {
-      const moum=['ㅏ', 'ㅓ', 'ㅣ',  'ㅕ']
-      return moum[Math.floor(Math.random()*moum.length)]; // 재귀 호출
-    }
-    return vowel;
-  }
-
-  let vowelPosition = processVowel(vowels);
-
-  // 종성은 무조건 밑으로 내리기 위해 <br> 추가
-  if (finals !== '') {
-    finalPosition ="<br>" + finals  ; // 종성도 <br>로 내려주기
-  }
-
-  // 초성, 중성, 종성을 결합하여 음절 생성
-  return initials + vowelPosition + finalPosition;
-}
-console.log('초성:', INITIALS[cho1]);
-console.log('중성:', VOWELS[joong1]);
-console.log('종성:', FINALS[jong01]);
-
-try {
-  const syllable1 = combineHangul(INITIALS[cho1], VOWELS[joong1], FINALS[jong01]);
-  const syllable2 = combineHangul(INITIALS[cho2], VOWELS[joong2], FINALS[jong02]);
-
-  $('body').html(`${syllable1}<br><br>${syllable2}`)
-
-  
-} catch (error) {
-  console.error(error.message);
-}
-
+       const boys = ["서", "준", "도", "윤", "하", "은", "우", "시", "지", "호", "예", "수", "유", "안"]
+      const daughter=[]
+      const sons=[]
+      for (let i = 0; i < 2; i++) {
+        let rand=Math.floor(Math.random()*girl.length)
+        daughter.push(girl[rand])
+        sons.push(boys[rand])
+      }
+      $('body').html(`딸의 이름: ${daughter[0]}${daughter[1]}<br><br>아들 이름: ${sons[0]}${sons[1]}<br><br>`)
+      $('body').append('<button>새로고침</button>');
+      $('button').click(()=>{
+        location.reload()
+      })
     </script>
 </body>
 </html>
